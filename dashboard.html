@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Data Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #D22229;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .data-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .data-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .data-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 15px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .data-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .data-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .data-value {
+            color: #333;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .delete-btn:hover {
+            background: #d32f2f;
+        }
+
+        .timestamp {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .charts-section {
+            margin-top: 30px;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .chart-card h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 10px;
+        }
+
+        .performance-empty {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .athlete-section {
+            margin-bottom: 40px;
+        }
+
+        .athlete-section-title {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .athlete-selector {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .athlete-selector label {
+            display: block;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .athlete-selector select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .athlete-selector select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>📊 Sports Data Dashboard</h1>
+            <p class="subtitle">View all submitted sports data and performance trends</p>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Form</a>
+
+        <!-- Athlete Selector -->
+        <div id="athleteSelectorContainer" class="athlete-selector" style="display: none;">
+            <label for="athleteSelect">Select Athlete to View Performance Data:</label>
+            <select id="athleteSelect">
+                <option value="all">View All Athletes</option>
+            </select>
+        </div>
+
+        <div id="statsContainer" class="stats-card" style="display: none;">
+            <div class="stats-grid" id="statsGrid"></div>
+        </div>
+
+        <div id="dataContainer"></div>
+
+        <div id="emptyState" class="data-card empty-state">
+            <div class="empty-state-icon">📭</div>
+            <h2>No Data Yet</h2>
+            <p>No sports data has been submitted yet. Go back to the form to submit your first entry!</p>
+            <a href="index.html" class="dashboard-link" style="margin-top: 20px; display: inline-block;">Submit Data →</a>
+        </div>
+
+        <!-- Performance Charts Section -->
+        <div id="chartsSection" class="charts-section" style="display: none;">
+            <div id="selectedAthleteTitle" style="text-align: center; color: white; margin-bottom: 20px; font-size: 1.2em; font-weight: 600;"></div>
+            
+            <!-- Single athlete charts (for when one athlete is selected) -->
+            <div id="singleAthleteCharts">
+                <div class="chart-card">
+                    <h3>🏃 40m Dash Time Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="dashChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>⬆️ Jump Height Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="jumpChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>💪 Bench Press Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="benchChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Multiple athletes charts container (for when all athletes are selected) -->
+            <div id="allAthletesCharts"></div>
+        </div>
+
+        <div id="performanceEmptyState" class="chart-card performance-empty" style="display: none;">
+            <div style="font-size: 3em; margin-bottom: 15px;">📈</div>
+            <h3>No Performance Data Yet</h3>
+            <p>Start tracking your athletic performance by adding data points in the form!</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
+

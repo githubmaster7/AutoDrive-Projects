@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Data Collection - Student Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏃 Sports Data Collection</h1>
+            <p class="subtitle">Fill out your sports information below</p>
+        </header>
+
+        <main>
+            <form id="sportsForm" class="form-card">
+                <div class="form-group">
+                    <label for="studentName">Student Name *</label>
+                    <input type="text" id="studentName" name="studentName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="studentId">Student ID *</label>
+                    <input type="text" id="studentId" name="studentId" required placeholder="Enter your student ID">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="sport">Sport *</label>
+                    <select id="sport" name="sport" required>
+                        <option value="">Select a sport</option>
+                        <option value="Basketball">Basketball</option>
+                        <option value="Football">Football</option>
+                        <option value="Soccer">Soccer</option>
+                        <option value="Tennis">Tennis</option>
+                        <option value="Volleyball">Volleyball</option>
+                        <option value="Swimming">Swimming</option>
+                        <option value="Track and Field">Track and Field</option>
+                        <option value="Cricket">Cricket</option>
+                        <option value="Baseball">Baseball</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="otherSportGroup" style="display: none;">
+                    <label for="otherSport">Specify Sport</label>
+                    <input type="text" id="otherSport" name="otherSport" placeholder="Enter sport name">
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience Level *</label>
+                    <select id="experience" name="experience" required>
+                        <option value="">Select experience level</option>
+                        <option value="Beginner">Beginner (0-1 years)</option>
+                        <option value="Intermediate">Intermediate (2-4 years)</option>
+                        <option value="Advanced">Advanced (5+ years)</option>
+                        <option value="Professional">Professional</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="position">Position / Role</label>
+                    <input type="text" id="position" name="position" placeholder="e.g., Forward, Goalkeeper, Point Guard">
+                </div>
+
+                <div class="form-group">
+                    <label for="team">Team Name (if applicable)</label>
+                    <input type="text" id="team" name="team" placeholder="Enter team name">
+                </div>
+
+                <div class="form-group">
+                    <label for="achievements">Achievements / Awards</label>
+                    <textarea id="achievements" name="achievements" rows="3" placeholder="List any sports achievements, awards, or notable accomplishments"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="trainingHours">Weekly Training Hours *</label>
+                    <input type="number" id="trainingHours" name="trainingHours" required min="0" max="40" placeholder="Hours per week">
+                </div>
+
+                <div class="form-group">
+                    <label for="jumpHeight">Jump Height (cm)</label>
+                    <input type="number" id="jumpHeight" name="jumpHeight" min="0" step="0.1" placeholder="Enter jump height in centimeters">
+                </div>
+
+                <div class="form-group">
+                    <label for="goals">Future Goals</label>
+                    <textarea id="goals" name="goals" rows="3" placeholder="What are your sports goals?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Sports Data</button>
+            </form>
+
+            <!-- Athletic Performance Tracking Section -->
+            <div class="form-card" id="performanceTracking">
+                <h2 style="color: #667eea; margin-bottom: 20px; text-align: center;">📈 Athletic Performance Tracking</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 25px;">Track your performance over time with multiple data points</p>
+                
+                <form id="performanceForm">
+                    <div class="form-group">
+                        <label for="athleteName">Athlete Name *</label>
+                        <input type="text" id="athleteName" name="athleteName" required placeholder="Enter athlete name" autocomplete="off">
+                        <div id="existingAthleteHint" style="display: none; color: #667eea; font-size: 0.9em; margin-top: 5px;">
+                            ✓ Existing athlete - data will be added to their profile
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="performanceDate">Week/Date of Measurement *</label>
+                        <input type="date" id="performanceDate" name="performanceDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dash40m">40m Dash Time (seconds) *</label>
+                        <input type="number" id="dash40m" name="dash40m" required min="0" step="0.01" placeholder="Enter time in seconds (e.g., 5.25)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumpHeightPerf">Jump Height (cm) *</label>
+                        <input type="number" id="jumpHeightPerf" name="jumpHeightPerf" required min="0" step="0.1" placeholder="Enter jump height in centimeters">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="benchPress">Bench Press (kg) *</label>
+                        <input type="number" id="benchPress" name="benchPress" required min="0" step="0.1" placeholder="Enter weight in kilograms">
+                    </div>
+
+                    <button type="submit" class="submit-btn">Add Performance Data</button>
+                </form>
+
+                <div id="performanceSuccessMessage" class="message success-message" style="display: none; margin-top: 15px;">
+                    ✓ Performance data added successfully!
+                </div>
+            </div>
+
+            <div class="links">
+                <a href="dashboard.html" class="dashboard-link">View All Data & Charts →</a>
+            </div>
+        </main>
+
+        <div id="successMessage" class="message success-message" style="display: none;">
+            ✓ Data submitted successfully!
+        </div>
+
+        <div id="errorMessage" class="message error-message" style="display: none;">
+            ✗ Error submitting data. Please try again.
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
